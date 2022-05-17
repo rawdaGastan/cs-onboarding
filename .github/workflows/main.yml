@@ -17,6 +17,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: cd server
       - run: npm install --prefix ./server
-      - run: npm test
+      - run: npm run test:watch -- ./server
+
     
 
