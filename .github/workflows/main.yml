@@ -16,6 +16,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.3
         with:
           jestArgs: server/test.ts
 
