@@ -2,7 +2,7 @@ const axios = require('axios');
 
 
 test('Add numbers 33 + 9 = 42', async() => {
-    const res = await axios.post('http://0.0.0.0:3000/calc/', {
+    const res = await axios.post('http://192.168.1.14:3000/calc/', {
         "firstValue": 33,
         "operator": "+",
         "secondValue": 9
