@@ -15,7 +15,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: docker-compose up; cd server; npm test
+      - run: npm install --prefix ./server
+      - run: cd server; npm test
 
     
 
