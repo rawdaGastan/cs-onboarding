@@ -3,14 +3,15 @@ import os
 
 #get dir location
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+file = open(os.path.join(__location__, 'sample.ini')).read()
+parsed = ini.parse(file)
 
-config = ini.parse(open(os.path.join(__location__, 'sample.ini')).read())
+def test():
+    assert parsed["owner"]["name"] == "John", "Should be John"
+    assert parsed["owner"]["organization"] == "threefold", "Should be threefold"
+    assert parsed["database"]["server"] == "192.0.2.62", "Should be 192.0.2.62"
 
-config['scope'] = 'local'
-config['database']['database'] = 'use_another_database'
-config['paths']['default']['tmpdir'] = '/tmp'
-del config['paths']['default']['datadir']
-config['paths']['default']['array'].append('fourth value')
 
-with open(os.path.join(__location__, 'sample_modified.ini'), 'w+') as f:
-    f.write(ini.stringify(config, {'section': 'section'}))
+if __name__ == "__main__":
+    test()
+    print("Everything passed")
