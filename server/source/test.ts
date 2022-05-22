@@ -1,4 +1,4 @@
-//const axios = require('axios');
+const axios = require('axios');
 import controller from './controllers/calc';
 
 test('Add numbers 33 + 9 = 42', async() => {
@@ -32,7 +32,7 @@ test('Power numbers 6 ^ 2 = 36', async() => {
 })
 
 // local test
-/*
+
 test('Add numbers 33 + 9 = 42', async() => {
     const res = await axios.post('http://0.0.0.0:3000/calc/', {
         "firstValue": 33,
@@ -98,4 +98,4 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     var answer = res.data.answer;
     expect(answer).toBe(36);
 })
-*/
+
