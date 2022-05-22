@@ -207,7 +207,7 @@ router.get('/3bot_callback', async (req, res, next) => {
         session["signedAttempt"] = signedData
         */
 
-        res.status(200).redirect("http://localhost:8080/");
+        res.status(200).redirect("http://localhost:8080/calc");
         
     }
 
@@ -216,7 +216,7 @@ router.get('/3bot_callback', async (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
 
-    session.destroy();
+    session.state = "";
 
     res.status(200).send("http://localhost:8080/");
 });

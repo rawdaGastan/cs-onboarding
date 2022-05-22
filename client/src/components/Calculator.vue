@@ -38,11 +38,7 @@
     </div>
     </div>
 
-    <template>
-        <div class="container">
-          <button class="button c" style="width:100%" @click="logout()">Logout</button>
-        </div>
-    </template>
+    <button class="button c" style="width:50%; margin: 10%;" @click="logout()">Logout</button>
 
   </div>
 </template>
