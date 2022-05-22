@@ -1,8 +1,12 @@
 import http from 'http';
+import https from 'https';
+
 import cors from 'cors';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import routes from './routes/calc';
+
+const fs = require('fs')
 
 const router: Express = express();
 
@@ -39,7 +43,24 @@ router.use((req, res, next) => {
     });
 });
 
+const path = require('path');
+
 /** Server */
+/** http */
+/*
 const httpServer = http.createServer(router);
 const PORT: any = process.env.PORT ?? 3000;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
+*/
+
+/** https */
+const httpsServer = https
+.createServer(
+  {
+    key: fs.readFileSync(__dirname+"/keys/key.pem"),
+    cert: fs.readFileSync(__dirname+"/keys/cert.pem"),
+  },
+  router
+);
+const PORT_s: any = process.env.PORT ?? 3000;
+httpsServer.listen(PORT_s, () => console.log(`The server is running on port ${PORT_s}`));

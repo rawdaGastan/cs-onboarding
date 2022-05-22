@@ -37,7 +37,14 @@
       <button class="button l" @click="operatorSelection('+')">+</button>
     </div>
     </div>
-    </div>
+
+    <template>
+        <div class="container">
+          <button class="button c" style="width:100%" @click="logout()">Logout</button>
+        </div>
+    </template>
+
+  </div>
 </template>
 
 <script>
@@ -58,7 +65,7 @@ export default {
   methods: {
     sendCalculation(object) {
       axios
-        .post("http://localhost:3000/calc", object)
+        .post("https://localhost:3000/calc", object)
         .then((response) => {
           console.log("Sent successfully answer: " + response.data);
           this.current = response.data.answer;
@@ -81,30 +88,46 @@ export default {
     equals() {
       this.secondValue = this.current;
       const object = {
-        firstValue: this.firstValue,
+        firstValue: parseInt(this.firstValue),
         operator: this.operator,
-        secondValue: this.secondValue,
+        secondValue: parseInt(this.secondValue),
       };
       this.sendCalculation(object);
-      this.previous = this.current;
+      //this.previous = this.current;
     },
-    operatorSelection(operator) {
-      this.operator = operator;
-      this.firstValue = this.current;
-      this.current = "";
+    operatorSelection(operator) { 
+      if(!(this.display.includes("+") || this.display.includes("/") || this.display.includes("-") 
+      || this.display.includes("//") || this.display.includes("x") || this.display.includes("%"))){
+          console.log(this.display)
+          this.operator = operator;
+          this.firstValue = this.current;
+          this.current = "";
+          
+          if (operator == "*"){
+            this.display = this.display + " x ";
+          }
+          else{
+            this.display = this.display + " " + operator + " ";
+          }
+      }
       
-      if (operator == "*"){
-        this.display = this.display + " x ";
-      }
-      else{
-        this.display = this.display + " " + operator + " ";
-      }
     },
     dot() {
       if (!this.current.includes(".")) {
         this.current = this.current + ".";
         this.display = this.display + ".";
       }
+    },
+    logout() {
+      axios
+        .get("https://localhost:3000/logout")
+        .then((response) => {
+          console.log("Sent successfully logout: " + response.data);
+          window.location.href = response.data.replaceAll(" ", "");
+        })
+        .catch((error) => {
+          console.log("Failed to send with error: " + error);
+        });
     },
   },
 };
