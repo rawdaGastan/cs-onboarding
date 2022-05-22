@@ -17,6 +17,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: pip install ini-parser; cd parser; python3 parse.py
       - run: npm install --prefix ./server
+      - run: cd server; npm run dev &
       - run: cd server; npm test
 
     
