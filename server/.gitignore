@@ -1,7 +1,7 @@
 
 node_modules
 /dist
-source/keys
+src/keys
 
 
 # local env files
