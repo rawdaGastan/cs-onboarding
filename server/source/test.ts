@@ -32,7 +32,7 @@ test('Power numbers 6 ^ 2 = 36', async() => {
 })
 
 // local test
-
+/*
 test('Add numbers 33 + 9 = 42', async() => {
     const res = await axios.post('http://localhost:3000/calc/', {
         "firstValue": 33,
@@ -99,3 +99,4 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     expect(answer).toBe(36);
 })
 
+*/

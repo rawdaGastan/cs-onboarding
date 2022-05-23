@@ -4,6 +4,7 @@ import nacl from 'tweetnacl';
 import nacl_util from 'tweetnacl-util';
 import "express-session";
 
+const ed2curve = require('ed2curve')
 const axios = require('axios');
 const router = express.Router();
 
@@ -130,82 +131,68 @@ router.get('/3bot_callback', async (req, res, next) => {
             res.status(400).send("username mismatch!");
         }
 
+        /*
         // verify state
         var state = (data as { [key: string]: any })["signedState"] as string;
         var sess_state = session.state;
-        if (state != sess_state.replaceAll(" ", "")){
+        if (state != sess_state){
             res.status(400).send("Invalid state. not matching one in user session");
         }
 
         console.log(state)
-        console.log(sess_state)        
-
-        var nonce = (data as { [key: string]: any })["data"]["nonce"] as string;
-        var ciphertext = (data as { [key: string]: any })["data"]["ciphertext"] as string;
+        console.log(sess_state)    
         
-        /*
-        priv = j.core.identity.me.nacl.private_key
-        box = Box(priv, user_pub_key.to_curve25519_public_key())
-        decrypted = box.decrypt(ciphertext, nonce)
         */
 
+        var nonce = (data as { [key: string]: any })["data"]["nonce"] as string;
+        var ciphertext = (data as { [key: string]: any })["data"]["ciphertext"] as string;     
         
+        const newPubkey = ed2curve.convertPublicKey(user_pub_key);         
+        
+        var decrypted = null;
+
         try{
-            var decrypted = nacl.box.open(nacl_util.decodeBase64(ciphertext), nacl_util.decodeBase64(nonce), user_pub_key, private_key)
-            console.log(nonce);
-            console.log(nacl_util.encodeBase64(user_pub_key));
-            console.log(nacl_util.encodeBase64(public_key));
-            console.log(nacl_util.encodeBase64(private_key));
-            console.log(decrypted);
+            decrypted = nacl.box.open(nacl_util.decodeBase64(ciphertext), nacl_util.decodeBase64(nonce), newPubkey, private_key)
         }
 
         catch {
             res.status(400).send("Error decrypting data");
-            next();
         }
-
         
-        /*
-
         try{
-            var result = JSON.parse(nacl_util.encodeUTF8(decrypted));
+            var result = JSON.parse(nacl_util.encodeUTF8(decrypted!));
         }
 
         catch (JSONDecodeError){
             res.status(400).send("3Bot login returned faulty data");
-            next();
         }
 
+        
         if (!result.hasOwnProperty('email')){
             res.status(400).send("Email is not present in data");
-            next();
         }
 
         var email = result["email"]["email"]
 
         var sei = result["email"]["sei"]
-        var response2 = await axios.post(
-            "https://openkyc.live/verification/verify-sei",
-            {
-                headers:{"Content-Type": "application/json"},
-                json:{"signedEmailIdentifier": sei},
-            }
-        )
 
-        if (response2.status_code != 200){
-            var next_url = req.query["next_url"] = "/logout"
-
-            res.status(200).send(next_url);
-            next();
-        }
+        axios.post("https://openkyc.live/verification/verify-sei", {
+            signedEmailIdentifier: sei,
+          })
+          .then(function (response: any) {
+            console.log(response);
+          })
+          .catch(function (error: any) {
+            console.log(error);
+            res.status(200).redirect("http://localhost:8080/");
+          });
 
         username = username.toLowerCase(); 
-        /* 
-        session["username"] = username
-        session["email"] = email
-        session["authorized"] = true
-        session["signedAttempt"] = signedData
-        */
+         
+        session.username = username
+        session.email = email
+        session.authorized = true
+        session.signedAttempt = signedData
 
         res.status(200).redirect("http://localhost:8080/calc");
         
@@ -217,8 +204,22 @@ router.get('/3bot_callback', async (req, res, next) => {
 router.get('/logout', (req, res, next) => {
 
     session.state = "";
-
+    session.username = "";
+    session.email = "";
+    session.authorized = false
+    session.signedAttempt = "";
+    
     res.status(200).send("http://localhost:8080/");
 });
+
+router.get('/verify', (req, res, next) => {
+
+    if(session.authorized)
+        res.status(200).send(true);
+
+    else
+        res.status(200).send(false);
+});
+
 
 export = router;

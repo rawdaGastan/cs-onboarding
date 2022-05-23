@@ -1,6 +1,11 @@
 <template>
- <h1 id="title">Calculator</h1>
-  <div class="container">
+ 
+  <div v-if="!logged" class="container">
+  <h2 id="title">You are not allowed here <router-link to="/">Please click here to login</router-link></h2>
+  </div>
+
+  <div v-else class="container">
+  <h1 id="title">Calculator</h1>
   <div class="calc-body">
     <div class="calc-screen">
       <div class="calc-operation">{{ display }}</div>
@@ -49,6 +54,7 @@ export default {
   name: 'calcOp',
   data() {
     return {
+      logged: false,
       current: "",
       previous: "",
       operator: "",
@@ -125,6 +131,18 @@ export default {
           console.log("Failed to send with error: " + error);
         });
     },
+  },
+  beforeMount(){
+    axios
+        .get("https://localhost:3000/verify")
+        .then((response) => {
+          console.log("Sent successfully logout: " + response.data);
+          this.logged = response.data
+        })
+        .catch((error) => {
+          console.log("Failed to send with error: " + error);
+          this.logged = false
+        });
   },
 };
 
