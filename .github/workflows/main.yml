@@ -16,33 +16,27 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
-      - name: Node version 14
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-        
-      - name: Install node modules 
-        run: npm install --prefix ./server
-        
-      - name: Run server
-        run: cd server; npm run dev &
-        
-      - name: Test server
-        run: cd server; npm test
-        
-      - name: Node version 12
-        uses: actions/setup-node@v3
-        with:
-          node-version: '12'
-        
-      - name: Install node modules 
-        run: npm install --prefix ./server
-        
-      - name: Run server
-        run: cd server; npm run dev &
-        
-      - name: Test server
-        run: cd server; npm test
-
+  Server-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x, 14.x, 12.x] 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+  
+    - name: Install node modules 
+      run: npm install --prefix ./server
+      
+    - name: generate keys
+    - run: cd server/src; mkdir keys; cd keys; openssl genrsa -out key.pem; openssl req -new -key key.pem -out csr.pem; openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
     
+    - name: Run server
+      run: cd server; npm run dev &
+        
+    - name: Test server
+      run: cd server; npm test
 
