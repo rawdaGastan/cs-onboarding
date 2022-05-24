@@ -2,34 +2,19 @@
 
 ## Project setup
 
-## Generate keys
-```
+### Generate keys
+```bash
 cd server/src
-```
-
-```
 mkdir keys
-```
-
-```
 cd keys
-```
-
-```
 openssl genrsa -out key.pem
-```
-
-```
 openssl req -new -key key.pem -out csr.pem -subj "/C=EG/ST=Cairo/L=Cairo/O=Codescalers/OU=IT/CN=calc"
-
-```
-
-```
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+
 ```
 
-## Run
-```
+### Run
+```bash
 docker-compose up
 ```
 
