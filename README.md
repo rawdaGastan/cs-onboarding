@@ -1,6 +1,33 @@
 # cs-onboarding
 
 ## Project setup
+
+## Generate keys
+```
+cd server/src
+```
+
+```
+mkdir keys
+```
+
+```
+cd keys
+```
+
+```
+openssl genrsa -out key.pem
+```
+
+```
+openssl req -new -key key.pem -out csr.pem
+```
+
+```
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+```
+
+## Run
 ```
 docker-compose up
 ```
