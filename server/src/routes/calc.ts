@@ -28,10 +28,15 @@ router.post('/calc', (req, res, next) => {
     const secondValue: number = req.body.secondValue;
 
     var result: number = NaN;
-    if(Number(firstValue) != NaN && Number(secondValue) != NaN)
+    if(Number(firstValue) && Number(secondValue)){
         result = controller.calc(Number(firstValue), operator, Number(secondValue));
+        res.status(200).send({ answer: result });
+    }
+    else{
+        console.log("leh")
+        res.status(400).send({ answer: result, msg: "Calculator accepts numbers only" });
+    }
 
-    res.send({ answer: result });
 });
 
 // auth

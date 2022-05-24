@@ -26,6 +26,7 @@
     "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
+    "openssl": "^2.0.0",
     "ts-node": "^10.7.0",
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1",

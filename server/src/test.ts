@@ -34,26 +34,36 @@ test('Power numbers 6 ^ 2 = 36', async() => {
 
 // corners 
 test('api Add numbers c + 9 = null', async() => {
-    const res = await axios.post('https://localhost:3000/calc/', {
+    axios.post('https://localhost:3000/calc/', {
         "firstValue": 'c',
         "operator": "+",
         "secondValue": 9
-    });
-
-    var answer = res.data.answer;
-    expect(answer).toBe(null);
+        })
+        .then(function(res: any) {
+            var answer = res.data.answer;
+            expect(answer).toBe(null);
+        })
+        .catch(function(error: any) {
+            var answer = error.response.data.answer;
+            expect(answer).toBe(null);
+        });
 })
 
 // corners 
 test('api / - c = null', async() => {
-    const res = await axios.post('https://localhost:3000/calc/', {
+    axios.post('https://localhost:3000/calc/', {
         "firstValue": '/',
         "operator": "-",
-        "secondValue": "c"
-    });
-
-    var answer = res.data.answer;
-    expect(answer).toBe(null);
+        "secondValue": 9
+        })
+        .then(function(res: any) {
+            var answer = res.data.answer;
+            expect(answer).toBe(null);
+        })
+        .catch(function(error: any) {
+            var answer = error.response.data.answer;
+            expect(answer).toBe(null);
+        });
 })
 
 // local test
