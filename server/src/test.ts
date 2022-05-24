@@ -59,7 +59,7 @@ test('/ - c = null', async() => {
 // local test
 /*
 test('Subtract numbers 33 - 9 = 24', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
+    const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 33,
         "operator": "-",
         "secondValue": 9
@@ -70,7 +70,7 @@ test('Subtract numbers 33 - 9 = 24', async() => {
 })
 
 test('Divide numbers 36 / 6 = 6', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
+    const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 36,
         "operator": "/",
         "secondValue": 6
@@ -81,7 +81,7 @@ test('Divide numbers 36 / 6 = 6', async() => {
 })
 
 test('Multiply numbers 6 * 6 = 36', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
+    const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "*",
         "secondValue": 6
@@ -92,7 +92,7 @@ test('Multiply numbers 6 * 6 = 36', async() => {
 })
 
 test('Remainder numbers 6 % 4 = 2', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
+    const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "%",
         "secondValue": 4
@@ -103,7 +103,7 @@ test('Remainder numbers 6 % 4 = 2', async() => {
 })
 
 test('Power numbers 6 ^ 2 = 36', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
+    const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "^",
         "secondValue": 2
