@@ -15,9 +15,15 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: npm install --prefix ./server
-      - run: cd server; npm run dev &
-      - run: cd server; npm test
+      
+      - name: Install node modules 
+        run: npm install --prefix ./server
+        
+      - name: Run server
+        run: cd server; npm run dev &
+        
+      - name: Test server
+        run: cd server; npm test
 
     
 
