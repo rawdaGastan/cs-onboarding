@@ -28,7 +28,7 @@ router.post('/calc', (req, res, next) => {
     const secondValue: number = req.body.secondValue;
 
     var result: number = NaN;
-    if(Number(firstValue) && Number(secondValue))
+    if(Number(firstValue) != NaN && Number(secondValue) != NaN)
         result = controller.calc(Number(firstValue), operator, Number(secondValue));
 
     res.send({ answer: result });
