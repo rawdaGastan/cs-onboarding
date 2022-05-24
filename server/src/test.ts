@@ -31,9 +31,9 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     expect(answer).toBe(36);
 })
 
-/*
+
 // corners 
-test('Add numbers c + 9 = null', async() => {
+test('api Add numbers c + 9 = null', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 'c',
         "operator": "+",
@@ -45,7 +45,7 @@ test('Add numbers c + 9 = null', async() => {
 })
 
 // corners 
-test('/ - c = null', async() => {
+test('api / - c = null', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": '/',
         "operator": "-",
@@ -57,8 +57,7 @@ test('/ - c = null', async() => {
 })
 
 // local test
-/*
-test('Subtract numbers 33 - 9 = 24', async() => {
+test('api Subtract numbers 33 - 9 = 24', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 33,
         "operator": "-",
@@ -69,7 +68,7 @@ test('Subtract numbers 33 - 9 = 24', async() => {
     expect(answer).toBe(24);
 })
 
-test('Divide numbers 36 / 6 = 6', async() => {
+test('api Divide numbers 36 / 6 = 6', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 36,
         "operator": "/",
@@ -80,7 +79,7 @@ test('Divide numbers 36 / 6 = 6', async() => {
     expect(answer).toBe(6);
 })
 
-test('Multiply numbers 6 * 6 = 36', async() => {
+test('api Multiply numbers 6 * 6 = 36', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "*",
@@ -91,7 +90,7 @@ test('Multiply numbers 6 * 6 = 36', async() => {
     expect(answer).toBe(36);
 })
 
-test('Remainder numbers 6 % 4 = 2', async() => {
+test('api Remainder numbers 6 % 4 = 2', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "%",
@@ -102,7 +101,7 @@ test('Remainder numbers 6 % 4 = 2', async() => {
     expect(answer).toBe(2);
 })
 
-test('Power numbers 6 ^ 2 = 36', async() => {
+test('api Power numbers 6 ^ 2 = 36', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
         "firstValue": 6,
         "operator": "^",
@@ -113,4 +112,3 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     expect(answer).toBe(36);
 })
 
-*/

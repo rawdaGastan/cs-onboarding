@@ -20,7 +20,8 @@ openssl genrsa -out key.pem
 ```
 
 ```
-openssl req -new -key key.pem -out csr.pem
+openssl req -new -key key.pem -out csr.pem -subj "/C=EG/ST=Cairo/L=Cairo/O=Codescalers/OU=IT/CN=calc"
+
 ```
 
 ```
