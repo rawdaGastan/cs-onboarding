@@ -2,12 +2,11 @@ FROM node:alpine
 
 WORKDIR /server
 
-COPY package.json .
+COPY . .
 
 RUN npm install\
     && npm install typescript -g
 
-COPY . .
 
 RUN tsc
 
