@@ -40,7 +40,7 @@ jobs:
       run: cd server; npm run dev &
         
     - name: Test server
-      run: cd server; npm test
+      run: cd server; export NODE_TLS_REJECT_UNAUTHORIZED='0'; npm test
     
     
     
