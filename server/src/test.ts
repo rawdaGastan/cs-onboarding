@@ -31,19 +31,32 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     expect(answer).toBe(36);
 })
 
-// local test
-/*
-test('Add numbers 33 + 9 = 42', async() => {
-    const res = await axios.post('http://localhost:3000/calc/', {
-        "firstValue": 33,
+// corners 
+test('Add numbers c + 9 = null', async() => {
+    const res = await axios.post('https://localhost:3000/calc/', {
+        "firstValue": 'c',
         "operator": "+",
         "secondValue": 9
     });
 
     var answer = res.data.answer;
-    expect(answer).toBe(42);
+    expect(answer).toBe(null);
 })
 
+// corners 
+test('/ - c = null', async() => {
+    const res = await axios.post('https://localhost:3000/calc/', {
+        "firstValue": '/',
+        "operator": "-",
+        "secondValue": "c"
+    });
+
+    var answer = res.data.answer;
+    expect(answer).toBe(null);
+})
+
+// local test
+/*
 test('Subtract numbers 33 - 9 = 24', async() => {
     const res = await axios.post('http://localhost:3000/calc/', {
         "firstValue": 33,

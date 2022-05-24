@@ -27,11 +27,12 @@ router.post('/calc', (req, res, next) => {
     const operator: string = req.body.operator;
     const secondValue: number = req.body.secondValue;
 
-    const result: number = controller.calc(firstValue, operator, secondValue);
+    var result: number = NaN;
+    if(Number(firstValue) && Number(secondValue))
+        result = controller.calc(Number(firstValue), operator, Number(secondValue));
 
     res.send({ answer: result });
 });
-//router.post('/calculate', controller.calculate);
 
 // auth
 
