@@ -16,6 +16,25 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
+      - name: Node version 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+        
+      - name: Install node modules 
+        run: npm install --prefix ./server
+        
+      - name: Run server
+        run: cd server; npm run dev &
+        
+      - name: Test server
+        run: cd server; npm test
+        
+      - name: Node version 12
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+        
       - name: Install node modules 
         run: npm install --prefix ./server
         
