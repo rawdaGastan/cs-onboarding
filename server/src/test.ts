@@ -31,6 +31,7 @@ test('Power numbers 6 ^ 2 = 36', async() => {
     expect(answer).toBe(36);
 })
 
+/*
 // corners 
 test('Add numbers c + 9 = null', async() => {
     const res = await axios.post('https://localhost:3000/calc/', {
