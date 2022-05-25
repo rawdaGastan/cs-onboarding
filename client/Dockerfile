@@ -13,8 +13,10 @@ COPY . .
 # install project dependencies
 RUN npm install
 
-# build app for production with minification
+# run
 RUN npm run build
 
+CMD npm run serve
+
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+#CMD [ "http-server", "dist" ]

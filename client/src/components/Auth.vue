@@ -10,15 +10,7 @@ import axios from "axios";
 export default {
   name: 'auth-calc',
   data() {
-    return {
-      current: "",
-      previous: "",
-      operator: "",
-      firstValue: "",
-      secondValue: "",
-      display: "",
-      answer: ""
-    };
+    return {};
   },
   methods: {
     login() {

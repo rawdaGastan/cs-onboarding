@@ -30,10 +30,10 @@ router.post('/calc', (req, res, next) => {
     var result: number = NaN;
     if(Number(firstValue) && Number(secondValue)){
         result = controller.calc(Number(firstValue), operator, Number(secondValue));
+        result = Number(result.toFixed(4));
         res.status(200).send({ answer: result });
     }
     else{
-        console.log("leh")
         res.status(400).send({ answer: result, msg: "Calculator accepts numbers only" });
     }
 

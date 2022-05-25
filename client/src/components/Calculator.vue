@@ -90,9 +90,9 @@ export default {
     equals() {
       this.secondValue = this.current;
       const object = {
-        firstValue: parseInt(this.firstValue),
+        firstValue: this.firstValue,
         operator: this.operator,
-        secondValue: parseInt(this.secondValue),
+        secondValue: this.secondValue,
       };
       this.sendCalculation(object);
       //this.previous = this.current;
@@ -136,7 +136,7 @@ export default {
     axios
         .get("https://localhost:3000/verify")
         .then((response) => {
-          console.log("Sent successfully logout: " + response.data);
+          console.log("Sent successfully verify: " + response.data);
           this.logged = response.data
         })
         .catch((error) => {

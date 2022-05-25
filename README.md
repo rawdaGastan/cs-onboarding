@@ -39,7 +39,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED='0'
 npm run test
 ```
 
-# client side
+# client side (vue.js)
 ```
 cd client
 ```
@@ -52,6 +52,21 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+```
+
+# client side (svelte)
+```
+cd svelte-client
+```
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run dev
 ```
 
 
