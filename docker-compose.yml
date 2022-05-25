@@ -4,7 +4,13 @@ services:
     image: "rawdagastan/calculator:server"
     ports:
       - "3000:3000"
+
   frontend:
     image: "rawdagastan/calculator:client"
+    ports:
+      - "8085:8085"
+
+  svelte:
+    image: "rawdagastan/calculator:svelte_client"
     ports:
       - "8080:8080"

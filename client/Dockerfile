@@ -16,7 +16,7 @@ RUN npm install
 # run
 RUN npm run build
 
-CMD npm run serve
+CMD npm run serve -- --port 8085
 
-EXPOSE 8080
+EXPOSE 8085
 #CMD [ "http-server", "dist" ]
