@@ -2,11 +2,9 @@ FROM node:12-alpine
 
 WORKDIR /svelte-client
 
-COPY package*.json ./
+COPY . .
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 8080
 
