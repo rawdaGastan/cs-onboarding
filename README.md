@@ -5,12 +5,6 @@
 docker-compose up
 ```
 
-## run with kubernetes
-```
-kubectl port-forward server-6b5789b94d-drghf 3000:3000
-kubectl port-forward client-6c6bf78bd-kc74h 8085:8085
-kubectl port-forward svelte-7944f6f5b9-xcfnp 8080:8080
-```
 
 ## helm
 ```
