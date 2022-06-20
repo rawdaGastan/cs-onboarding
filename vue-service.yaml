@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vue-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8085
+    nodePort: 30082
+  selector:
+    app: vue
+    tier: frontend
+  type: NodePort
+status:
+  loadBalancer: {}
+

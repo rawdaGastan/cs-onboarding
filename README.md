@@ -1,8 +1,37 @@
 # cs-onboarding
 
+## Run
+```
+docker-compose up
+```
+
+## run with kubernetes
+```
+kubectl port-forward server-6b5789b94d-drghf 3000:3000
+kubectl port-forward client-6c6bf78bd-kc74h 8085:8085
+kubectl port-forward svelte-7944f6f5b9-xcfnp 8080:8080
+```
+
+## helm
+```
+helm install calculator --dry-run --debug ./chart 
+
+export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services svelte-service)
+echo http://$NODE_IP:$NODE_PORT
+
+export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services vue-service)
+echo http://$NODE_IP:$NODE_PORT
+
+export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services server-service)
+echo http://$NODE_IP:$NODE_PORT
+```
+
 ## Project setup
 
-### Generate keys
+### Generate keys (for manual run)
 ```bash
 cd server/src
 mkdir keys
@@ -13,61 +42,26 @@ openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 
 ```
 
-### Run
-```bash
-docker-compose up
-```
-
 # server side
 ```
 cd server
 ```
+[How to run the server side](/server/README.md)
 
-## Setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run dev
-```
-
-### Testing
-```
-export NODE_TLS_REJECT_UNAUTHORIZED='0'
-npm run test
-```
 
 # client side (vue.js)
 ```
 cd client
 ```
+[How to run the client vue side](/client/README.md)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
 # client side (svelte)
 ```
 cd svelte-client
 ```
+[How to run the client svelte side](/svelte-client/README.md)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm start
-```
 
 
 

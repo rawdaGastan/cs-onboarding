@@ -6,6 +6,8 @@ services:
       - "3000:3000"
 
   frontend:
+    environment:
+      - VUE_APP_BACKEND="https://localhost:3010/"
     image: "rawdagastan/calculator:client"
     ports:
       - "8085:8085"

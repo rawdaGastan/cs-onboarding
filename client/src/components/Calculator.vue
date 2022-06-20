@@ -133,8 +133,11 @@ export default {
     },
   },
   beforeMount(){
+    console.log(process.env.VUE_APP_BACKEND);
+    console.log(process.env.VUE_APP_BACKEND+"verify");
     axios
-        .get("https://localhost:3000/verify")
+        //.get("https://localhost:3000/verify")
+        .get(process.env.VUE_APP_BACKEND+"verify")
         .then((response) => {
           console.log("Sent successfully verify: " + response.data);
           this.logged = response.data

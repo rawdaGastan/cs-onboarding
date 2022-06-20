@@ -20,6 +20,7 @@ WORKDIR /server
 
 COPY . .
 
+RUN apk add openssh-server && ssh-keygen -A
 RUN npm install\
     && npm install typescript -g
 

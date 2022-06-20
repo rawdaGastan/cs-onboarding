@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-deploy
+spec:
+  selector:
+    matchLabels:
+      app: vue
+      tier: frontend
+  template:
+    metadata:
+      name: vue-podd
+      labels:
+        app: vue
+        tier: frontend
+    spec:
+      containers:
+      - name: vue
+        image: rawdagastan/calculator:client

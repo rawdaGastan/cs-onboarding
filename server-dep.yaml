@@ -1,0 +1,21 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-dep
+spec:
+  selector:
+    matchLabels:
+      app: server
+      tier: backend
+  template:
+    metadata:
+      name: server-pod
+      labels:
+        app: server
+        tier: backend
+    spec:
+      containers:
+      - name: server
+        image: rawdagastan/calculator:server
+

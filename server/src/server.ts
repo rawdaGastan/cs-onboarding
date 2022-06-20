@@ -62,5 +62,6 @@ const httpsServer = https
   },
   router
 );
+
 const PORT_s: any = process.env.PORT ?? 3000;
 httpsServer.listen(PORT_s, () => console.log(`The server is running on port ${PORT_s}`));

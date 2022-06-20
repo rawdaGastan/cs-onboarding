@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svelte-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30080
+  selector:
+    app: svelte
+    tier: frontend
+  type: NodePort
+status:
+  loadBalancer: {}
+
+

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svelte-deploy
+spec:
+  selector:
+    matchLabels:
+      app: svelte
+      tier: frontend
+  template:
+    metadata:
+      name: svelte-podd
+      labels:
+        app: svelte
+        tier: frontend
+    spec:
+      containers:
+      - name: svelte
+        image: rawdagastan/calculator:svelte_client
