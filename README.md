@@ -5,21 +5,27 @@
 docker-compose up
 ```
 
+## run with kubernetes
+```
+kubectl port-forward server-6b5789b94d-drghf 3000:3000
+kubectl port-forward client-6c6bf78bd-kc74h 8085:8085
+kubectl port-forward svelte-7944f6f5b9-xcfnp 8080:8080
+```
 
 ## helm
 ```
-helm install calculator --dry-run --debug ./chart 
+helm install calculator --debug ./chart 
 
 export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
-export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services svelte-service)
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services svelte-serv);
 echo http://$NODE_IP:$NODE_PORT
 
 export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
-export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services vue-service)
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services vue-serv);
 echo http://$NODE_IP:$NODE_PORT
 
 export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}");
-export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services server-service)
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services server-serv);
 echo http://$NODE_IP:$NODE_PORT
 ```
 

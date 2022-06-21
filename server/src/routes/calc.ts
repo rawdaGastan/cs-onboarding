@@ -3,6 +3,7 @@ import controller from '../controllers/calc';
 import nacl from 'tweetnacl';
 import nacl_util from 'tweetnacl-util';
 import "express-session";
+require('dotenv').config();
 
 const ed2curve = require('ed2curve')
 const axios = require('axios');
@@ -190,7 +191,7 @@ router.get('/3bot_callback', async (req, res, next) => {
           })
           .catch(function (error: any) {
             console.log(error);
-            res.status(200).redirect("http://localhost:8080/");
+            res.status(200).redirect(process.env.FRONTEND+"");
           });
 
         username = username.toLowerCase(); 
@@ -200,7 +201,7 @@ router.get('/3bot_callback', async (req, res, next) => {
         session.authorized = true
         session.signedAttempt = signedData
 
-        res.status(200).redirect("http://localhost:8080/calc");
+        res.status(200).redirect(process.env.FRONTEND+"calc");
         
     }
 
@@ -215,7 +216,7 @@ router.get('/logout', (req, res, next) => {
     session.authorized = false
     session.signedAttempt = "";
     
-    res.status(200).send("http://localhost:8080/");
+    res.status(200).send(process.env.FRONTEND);
 });
 
 router.get('/verify', (req, res, next) => {

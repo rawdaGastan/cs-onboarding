@@ -17,3 +17,7 @@ spec:
       containers:
       - name: svelte
         image: rawdagastan/calculator:svelte_client
+        imagePullPolicy: Always
+        env:
+        - name: SVELTE_APP_BACKEND
+          value: {{ .Values.backend }}

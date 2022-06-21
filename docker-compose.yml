@@ -1,18 +1,22 @@
 version: "3.9"
 services:
   backend:
+    environment:
+      - FRONTEND=http://localhost:8085/
     image: "rawdagastan/calculator:server"
     ports:
       - "3000:3000"
 
   frontend:
     environment:
-      - VUE_APP_BACKEND="https://localhost:3010/"
+      - VUE_APP_BACKEND=https://localhost:3000/
     image: "rawdagastan/calculator:client"
     ports:
       - "8085:8085"
 
   svelte:
+    environment:
+      - SVELTE_APP_BACKEND=https://localhost:3000/
     image: "rawdagastan/calculator:svelte_client"
     ports:
       - "8080:8080"

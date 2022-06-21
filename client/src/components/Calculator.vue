@@ -54,6 +54,7 @@ export default {
   name: 'calcOp',
   data() {
     return {
+      backend: process.env.VUE_APP_BACKEND,
       logged: false,
       current: "",
       previous: "",
@@ -66,8 +67,9 @@ export default {
   },
   methods: {
     sendCalculation(object) {
+      let url = this.backend+"calc";
       axios
-        .post("https://localhost:3000/calc", object)
+        .post(url, object)
         .then((response) => {
           console.log("Sent successfully answer: " + response.data);
           this.current = response.data.answer;
@@ -121,8 +123,9 @@ export default {
       }
     },
     logout() {
+      let url = this.backend+"logout";
       axios
-        .get("https://localhost:3000/logout")
+        .get(url)
         .then((response) => {
           console.log("Sent successfully logout: " + response.data);
           window.location.href = response.data.replaceAll(" ", "");
@@ -133,11 +136,10 @@ export default {
     },
   },
   beforeMount(){
-    console.log(process.env.VUE_APP_BACKEND);
-    console.log(process.env.VUE_APP_BACKEND+"verify");
+    console.log(this.backend)
+    let url = this.backend+"verify";
     axios
-        //.get("https://localhost:3000/verify")
-        .get(process.env.VUE_APP_BACKEND+"verify")
+        .get(url)
         .then((response) => {
           console.log("Sent successfully verify: " + response.data);
           this.logged = response.data

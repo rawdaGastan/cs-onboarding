@@ -4,8 +4,14 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import { config } from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
+const configToReplace = {};
+for (const [key, v] of Object.entries(config().parsed)) {
+  configToReplace[`process.env.${key}`] = `'${v}'`;
+}
 
 function serve() {
 	let server;
@@ -42,6 +48,11 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production
 			}
+		}),
+		replace({
+			include: ["src/**/*.ts", "src/**/*.svelte"],
+			preventAssignment: true,
+			values: configToReplace,
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance

@@ -9,8 +9,9 @@
 
 	import { onMount } from 'svelte';
 	onMount(async () => {
+    console.log(process.env.SVELTE_APP_BACKEND);
 		axios
-        .get("https://localhost:3000/verify")
+        .get(process.env.SVELTE_APP_BACKEND+"verify")
         .then((response) => {
           console.log("Sent successfully verify: " + response.data);
           logged = response.data
@@ -26,7 +27,7 @@
 
 	function sendCalculation(object) {
       axios
-        .post("https://localhost:3000/calc", object)
+        .post(process.env.SVELTE_APP_BACKEND+"calc", object)
         .then((response) => {
           console.log("Sent successfully answer: " + response.data);
           current = response.data.answer;
@@ -84,7 +85,7 @@
 
     function logout() {
       axios
-        .get("https://localhost:3000/logout")
+        .get(process.env.SVELTE_APP_BACKEND+"logout")
         .then((response) => {
           console.log("Sent successfully logout: " + response.data);
           window.location.href = response.data.replaceAll(" ", "");

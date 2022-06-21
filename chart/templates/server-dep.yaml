@@ -17,3 +17,7 @@ spec:
       containers:
       - name: server
         image: rawdagastan/calculator:server
+        imagePullPolicy: Always
+        env:
+        - name: FRONTEND
+          value: {{ .Values.frontend }}

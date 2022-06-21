@@ -46,6 +46,9 @@ service:
   vuetargetPort: 8085
   vuenodeport: 30092
 
+backend: https://192.168.49.2:30091/
+frontend: http://192.168.49.2:30092/
+
 ingress:
   enabled: false
   className: ""

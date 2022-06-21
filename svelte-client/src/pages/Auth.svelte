@@ -11,7 +11,7 @@
    function login() 
    {
         axios
-        .get("https://localhost:3000/login")
+        .get(process.env.SVELTE_APP_BACKEND+"login")
         .then((response) => {
             console.log("Sent successfully login: " + response.data);
             window.location.href = response.data.replaceAll(" ", "");
