@@ -10,6 +10,9 @@ WORKDIR /client
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
+RUN chmod +x /client/start.sh
+RUN apk add openssh-server && ssh-keygen -A
+
 # install project dependencies
 RUN npm install
 

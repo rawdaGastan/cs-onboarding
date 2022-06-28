@@ -19,7 +19,7 @@ FROM node:alpine
 WORKDIR /server
 
 COPY . .
-
+RUN chmod +x /server/start.sh
 RUN apk add openssh-server && ssh-keygen -A
 RUN npm install\
     && npm install typescript -g

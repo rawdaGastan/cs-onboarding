@@ -41,8 +41,10 @@ service:
   port: 80
   targetPort: 8080
   nodePort: 30090
+
   servertargetPort: 3000
   servernodeport: 30091
+  
   vuetargetPort: 8085
   vuenodeport: 30092
 

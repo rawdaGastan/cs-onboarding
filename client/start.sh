@@ -8,7 +8,6 @@ echo $SSH_KEY > /root/.ssh/authorized_keys
 /usr/sbin/sshd
 echo root:hamada | chpasswd
 
-cd /server
-npm run dev
-touch start.txt
+cd /client
+npm run serve -- --port 8085
 sleep 1000000

@@ -1,8 +1,6 @@
 version: "3.9"
 services:
   backend:
-    environment:
-      - FRONTEND=http://localhost:8085/
     image: "rawdagastan/calculator:server"
     ports:
       - "3000:3000"

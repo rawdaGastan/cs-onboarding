@@ -3,7 +3,6 @@ import controller from '../controllers/calc';
 import nacl from 'tweetnacl';
 import nacl_util from 'tweetnacl-util';
 import "express-session";
-require('dotenv').config();
 
 const ed2curve = require('ed2curve')
 const axios = require('axios');
@@ -57,7 +56,8 @@ router.get('/login', (req, res, next) => {
     const state = controller.generateString(20);
 
     //session["next_url"] = next_url
-    session.state = state;       
+    session.state = state; 
+    session.fronend = req.headers.referer;      
 
     var app_id = "";
     if(req.headers["host"] != undefined)
@@ -191,7 +191,7 @@ router.get('/3bot_callback', async (req, res, next) => {
           })
           .catch(function (error: any) {
             console.log(error);
-            res.status(200).redirect(process.env.FRONTEND+"");
+            res.status(200).redirect(session.fronend+"");
           });
 
         username = username.toLowerCase(); 
@@ -201,7 +201,7 @@ router.get('/3bot_callback', async (req, res, next) => {
         session.authorized = true
         session.signedAttempt = signedData
 
-        res.status(200).redirect(process.env.FRONTEND+"calc");
+        res.status(200).redirect(session.fronend+"calc");
         
     }
 
@@ -216,7 +216,7 @@ router.get('/logout', (req, res, next) => {
     session.authorized = false
     session.signedAttempt = "";
     
-    res.status(200).send(process.env.FRONTEND);
+    res.status(200).send(session.fronend);
 });
 
 router.get('/verify', (req, res, next) => {
